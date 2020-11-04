@@ -9,12 +9,12 @@
 
     public class RemoveAnnotationScale
     {
-        private const string LangItem = "mpRemoveAnnotScale";
-
         [CommandMethod("ModPlus", "mpRemoveAnnotScale", CommandFlags.UsePickSet)]
         public static void Main()
         {
+#if !DEBUG
             Statistic.SendCommandStarting(new ModPlusConnector());
+#endif
 
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             var db = doc.Database;
@@ -26,7 +26,7 @@
                 {
                     var pso = new PromptSelectionOptions
                     {
-                        MessageForAdding = "\n" + Language.GetItem(LangItem, "msg1")
+                        MessageForAdding = "\n" + Language.GetItem("msg1")
                     };
                     var psr = ed.GetSelection(pso);
                     if (psr.Status != PromptStatus.OK)
