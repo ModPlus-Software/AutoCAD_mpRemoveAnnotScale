@@ -58,8 +58,16 @@
                             }
                             else
                             {
-                                if (ent.Annotative == AnnotativeStates.True)
-                                    AddScale(ent, currentScale, occ);
+                                try
+                                {
+                                    if (ent.Annotative == AnnotativeStates.True)
+                                        AddScale(ent, currentScale, occ);
+                                }
+                                catch (Exception e)
+                                {
+                                    if (e.Message != "eNotImplementedYet")
+                                        throw;
+                                }
                             }
                         }
                     }
